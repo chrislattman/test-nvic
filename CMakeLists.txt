@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.27)
+
+include(pico_sdk_import.cmake)
+
+project(test-nvic)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
+pico_sdk_init()
+
+add_executable(test_nvic test_nvic.c)
+target_link_libraries(test_nvic pico_stdlib)
+if(PICO_BOARD STREQUAL pico2_w)
+target_link_libraries(test_nvic pico_cyw43_arch_none)
+endif()
+
+pico_enable_stdio_usb(test_nvic 1)
+pico_enable_stdio_uart(test_nvic 1)
+pico_add_extra_outputs(test_nvic)
+
+add_compile_options(-Wall
+        -Wno-format          # int != int32_t as far as the compiler is concerned because gcc has int32_t as long int
+        -Wno-unused-function # we have some for the docs that aren't called
+        )
+if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    add_compile_options(-Wno-maybe-uninitialized)
+endif()
