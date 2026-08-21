@@ -7,7 +7,16 @@ Instructions:
 - Run `git submodule update --init --recursive`
 - Run `sudo apt install gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib`
 
-To generate Makefiles: `PICO_SDK_PATH=$(git rev-parse --show-toplevel)/pico-sdk cmake -DPICO_BOARD=pico2 -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-g++ -DPICOTOOL_FORCE_FETCH_FROM_GIT=ON -S . -B build`
+To generate Makefiles:
+
+```
+PICO_SDK_PATH=$(git rev-parse --show-toplevel)/pico-sdk \
+cmake -DPICO_BOARD=pico2 \
+    -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-gcc \
+    -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-g++ \
+    -DPICOTOOL_FORCE_FETCH_FROM_GIT=ON \
+    -S . -B build
+```
 
 To build application: `cmake --build build`
 
