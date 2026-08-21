@@ -4,23 +4,11 @@ This example demonstrates how to use the NVIC (nested vectored interrupt control
 
 Instructions:
 
-- Clone https://github.com/raspberrypi/pico-sdk
-- In `~/.bashrc` add `export PICO_SDK_PATH=/path/to/pico-sdk`
-- In the `pico-sdk` folder run `git submodule update --init`
-- Run `sudo apt install build-essential cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib`
-- Clone https://github.com/raspberrypi/picotool
-- Run `sudo apt install pkg-config libusb-1.0-0-dev`
-- In `~/.bashrc` add `export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig/"`
-- In the `picotool` folder run 
-    ```
-    cmake -S . -B build
-    cmake --build build
-    sudo cmake --install build
-    sudo cp udev/60-picotool.rules /etc/udev/rules.d/
-    sudo udevadm control --reload
-    ```
+- Run `git submodule update --init --recursive`
+- Run `sudo apt install gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib`
+- Follow the instructions at https://github.com/chrislattman/test-bare-metal-pico to install `picotool` if you haven't already
 
-To generate Makefiles: `cmake -DPICO_BOARD=pico2 -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-g++ -S . -B build`
+To generate Makefiles: `PICO_SDK_PATH=$(git rev-parse --show-toplevel)/pico-sdk cmake -DPICO_BOARD=pico2 -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-g++ -S . -B build`
 
 To build application: `cmake --build build`
 
