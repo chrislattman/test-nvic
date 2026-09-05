@@ -18,11 +18,8 @@ cmake -DPICO_BOARD=pico2 \
     -S . -B build
 ```
 
-To build application: `cmake --build build`
-
-To run on board: 
+To build application and run on board: 
 
 - Unplug USB cable from board
 - Hold down BOOTSEL button while plugging in USB cable
-- Run `cp build/test_nvic.uf2 /media/$USER/RP2350` (flashes the board with the .uf2 file)
-    - Alternatively, run `build/_deps/picotool/picotool load -u -v -x build/test_nvic.elf`
+- Run `cmake --build build --target run`
