@@ -5,17 +5,14 @@ This example demonstrates how to use the NVIC (nested vectored interrupt control
 Instructions:
 
 - Run `git submodule update --init --recursive`
+- Run `sed -i "s/-DPICOTOOL_NO_LIBUSB=1/-DPICOTOOL_NO_LIBUSB=0/g" pico-sdk/tools/Findpicotool.cmake`
 - Run `sudo apt install gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib`
 
 To generate Makefiles:
 
 ```
 PICO_SDK_PATH=$(git rev-parse --show-toplevel)/pico-sdk
-cmake -DPICO_BOARD=pico2 \
-    -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-gcc \
-    -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/arm-none-eabi-g++ \
-    -DPICOTOOL_FORCE_FETCH_FROM_GIT=ON \
-    -S . -B build
+cmake -DPICO_BOARD=pico2 -DPICOTOOL_FORCE_FETCH_FROM_GIT=ON -S . -B build
 ```
 
 To build application and run on board: 
