@@ -11,7 +11,7 @@ Instructions:
 To generate Makefiles:
 
 ```
-PICO_SDK_PATH=$(git rev-parse --show-toplevel)/pico-sdk
+PICO_SDK_PATH=$(git rev-parse --show-toplevel)/pico-sdk \
 cmake -DPICO_BOARD=pico2 -DPICOTOOL_FORCE_FETCH_FROM_GIT=ON -S . -B build
 ```
 
